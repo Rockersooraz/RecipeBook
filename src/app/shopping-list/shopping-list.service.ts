@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
 private  ingredients: Ingredient[] = [
     new Ingredient('Tomatoes',10),
     new Ingredient('onion',20)
@@ -14,6 +15,10 @@ private  ingredients: Ingredient[] = [
 
   getIngredients() {
     return this.ingredients.slice();
+  }
+
+  getIngredient(index: number){
+    return this.ingredients[index];
   }
 
   addIngredient(ingredient: Ingredient) {
@@ -24,9 +29,18 @@ private  ingredients: Ingredient[] = [
   addIngredients(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients); //... is spread operator which change the array into list of elements
     this.ingredientsChanged.next(this.ingredients.slice());
+}
 
+updateIngredients(index: number, newIngredient: Ingredient){
+  this.ingredients[index] = newIngredient;
+  this.ingredientsChanged.next(this.ingredients.slice());
 
-  }
+}
+
+deleteIngredients(index: number){
+  this.ingredients.splice(index, 1);
+  this.ingredientsChanged.next(this.ingredients.slice());
+}
 
 
 
