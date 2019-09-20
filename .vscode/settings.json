@@ -1,5 +1,9 @@
 {
     "ng-evergreen.checkFrequency": "On Load",
     "ng-evergreen.upgradeChannel": "Latest",
-    "ng-evergreen.versionToSkip": "8.2.4"
+    "ng-evergreen.versionToSkip": "8.2.4",
+    "cSpell.words": [
+        "authservice",
+        "dataser"
+    ]
 }

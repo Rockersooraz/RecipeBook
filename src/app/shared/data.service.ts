@@ -15,11 +15,12 @@ export class DataService {
 
 saveData(){
   const header =  this.recipeservice.getRecipes();
-  return this.http.put('https://ng-recipe-app-6009d.firebaseio.com/recipe.json',header);
+  const token =  this.authservice.getToken();
+  return this.http.put('https://ng-recipe-app-6009d.firebaseio.com/recipe.json?auth=' + token , header);
 }
 
 getData(){
-  const token =  this.authservice.getToken()
+  const token =  this.authservice.getToken();
   return this.http.get<Recipe[]>('https://ng-recipe-app-6009d.firebaseio.com/recipe.json?auth=' + token)
   .pipe(map(
     (recipes) => {
